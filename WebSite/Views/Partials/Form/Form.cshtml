@@ -1,0 +1,31 @@
+﻿@model WebSite.Models.OrderModel
+
+<div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content modal-popup">
+            <a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
+            <div id="popup-content-thank" class="hidden">
+                <h3 class="white">Спасибо за заказ!</h3>
+                <p>С вами свяжатся в течении полу часа</p>
+            </div>
+            <div id="popup-content-all">
+                <h3 class="white">Заказ</h3>
+                @{
+                    var attr = new AjaxOptions()
+                    {
+                        HttpMethod = "POST",
+                        OnComplete = "completeForm()"
+                    }.ToUnobtrusiveHtmlAttributes();
+                    attr.Add("class", "popup-form");
+                }
+                @using (Html.BeginUmbracoForm("Send", "Email", null, attr, FormMethod.Post))
+            {
+                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control form-white", placeholder = "Имя", id = "form-name" })
+                    @Html.TextBoxFor(model => model.Phone, new { @class = "form-control form-white", placeholder = "Телефон", id = "form-phone" })
+                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control form-white", placeholder = "Е-майл", id = "form-email" })
+                    <button type="submit" class="btn btn-submit">Заказать</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
