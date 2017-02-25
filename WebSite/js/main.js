@@ -1,4 +1,5 @@
-jQuery(function($) {
+jQuery(function ($) {
+
 	"use strict";
 	// Author Code Here
 

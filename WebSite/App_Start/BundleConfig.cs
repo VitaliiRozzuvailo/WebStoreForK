@@ -15,6 +15,7 @@ namespace WebSite.App_Start
                         "~/js/typewriter.js",
                         "~/js/jquery.onepagenav.js",
                         "~/js/jquery.unobtrusive-ajax.min.js",
+                        "~/js/jquery.bxslider.min.js",
                         "~/js/main.js"
                         ));
 
@@ -23,7 +24,8 @@ namespace WebSite.App_Start
                 "~/css/bootstrap.css",
                 "~/css/owl.css",
                 "~/css/animate.css",
-                "~/css/cardio.css"
+                "~/css/cardio.css",
+                "~/css/jquery.bxslider.css"
                 ));
 
             BundleTable.EnableOptimizations = false;

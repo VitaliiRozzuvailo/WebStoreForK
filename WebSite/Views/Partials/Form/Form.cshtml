@@ -20,9 +20,9 @@
                 }
                 @using (Html.BeginUmbracoForm("Send", "Email", null, attr, FormMethod.Post))
             {
-                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control form-white", placeholder = "Имя", id = "form-name" })
-                    @Html.TextBoxFor(model => model.Phone, new { @class = "form-control form-white", placeholder = "Телефон", id = "form-phone" })
-                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control form-white", placeholder = "Е-майл", id = "form-email" })
+                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control form-white", placeholder = "Имя", id = "form-name", type = "text"})
+                    @Html.TextBoxFor(model => model.Phone, new { @class = "form-control form-white", placeholder = "Телефон", id = "form-phone", type = "text" })
+                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control form-white", placeholder = "Е-майл", id = "form-email", type = "email" })
                     <button type="submit" class="btn btn-submit">Заказать</button>
                 }
             </div>

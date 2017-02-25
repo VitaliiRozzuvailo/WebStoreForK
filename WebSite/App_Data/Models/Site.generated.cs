@@ -64,6 +64,15 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
+		/// Images: Картинки с работами
+		///</summary>
+		[ImplementPropertyType("images")]
+		public string Images
+		{
+			get { return this.GetPropertyValue<string>("images"); }
+		}
+
+		///<summary>
 		/// Link for Insta
 		///</summary>
 		[ImplementPropertyType("linkForInsta")]
@@ -79,6 +88,15 @@ namespace Umbraco.Web.PublishedContentModels
 		public string LinkForVK
 		{
 			get { return this.GetPropertyValue<string>("linkForVK"); }
+		}
+
+		///<summary>
+		/// Map Image
+		///</summary>
+		[ImplementPropertyType("mapImage")]
+		public string MapImage
+		{
+			get { return this.GetPropertyValue<string>("mapImage"); }
 		}
 
 		///<summary>
@@ -151,6 +169,33 @@ namespace Umbraco.Web.PublishedContentModels
 		public string PageTitle
 		{
 			get { return this.GetPropertyValue<string>("pageTitle"); }
+		}
+
+		///<summary>
+		/// SubTitle
+		///</summary>
+		[ImplementPropertyType("priceSubTitle")]
+		public string PriceSubTitle
+		{
+			get { return this.GetPropertyValue<string>("priceSubTitle"); }
+		}
+
+		///<summary>
+		/// Title
+		///</summary>
+		[ImplementPropertyType("priceTitle")]
+		public string PriceTitle
+		{
+			get { return this.GetPropertyValue<string>("priceTitle"); }
+		}
+
+		///<summary>
+		/// Products
+		///</summary>
+		[ImplementPropertyType("products")]
+		public Archetype.Models.ArchetypeModel Products
+		{
+			get { return this.GetPropertyValue<Archetype.Models.ArchetypeModel>("products"); }
 		}
 
 		///<summary>

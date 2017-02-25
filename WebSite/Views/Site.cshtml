@@ -23,11 +23,6 @@
     <meta name="msapplication-TileColor" content="#2b334d">
     <meta name="msapplication-config" content="img/favicons/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.1.0/css/font-awesome.min.css">
-    <!-- Elegant Icons -->
-    <link rel="stylesheet" type="text/css" href="fonts/eleganticons/et-icons.css">
     @Styles.Render("~/bundles/all.css")
 </head>
 <body>
@@ -44,7 +39,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/"><img src="img/logo.jpg" data-active-url="img/logo.jpg" alt="" style="width:50px"></a>
+                <a class="navbar-brand" href="#intro"><img src="img/logo.jpg" data-active-url="img/logo.jpg" alt="" style="width:50px"></a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -70,7 +65,6 @@
                     <div class="row">
                         <div class="col-md-12 text-center">
                             <h1 class="white typed">@Model.Content.Title</h1>
-                            @*<span class="typed-cursor">|</span>*@
                         </div>
                     </div>
                 </div>
@@ -84,166 +78,47 @@
                 <h2>Продукция</h2>
             </div>
             <div class="row intro-tables">
-                <div class="col-md-4">
-                    <div class="intro-table intro-table-first">
-                        <h5 class="white heading">Today's Schedule</h5>
-                        <div class="owl-carousel owl-schedule bottom">
-                            <div class="item">
-                                <div class="schedule-row row">
-                                    <div class="col-xs-6">
-                                        <h5 class="regular white">Early Exercise</h5>
-                                    </div>
-                                    <div class="col-xs-6 text-right">
-                                        <h5 class="white">8:30 - 10:00</h5>
-                                    </div>
-                                </div>
-                                <div class="schedule-row row">
-                                    <div class="col-xs-6">
-                                        <h5 class="regular white">Muscle Building</h5>
-                                    </div>
-                                    <div class="col-xs-6 text-right">
-                                        <h5 class="white">8:30 - 10:00</h5>
-                                    </div>
-                                </div>
-                                <div class="schedule-row row">
-                                    <div class="col-xs-6">
-                                        <h5 class="regular white">Cardio</h5>
-                                    </div>
-                                    <div class="col-xs-6 text-right">
-                                        <h5 class="white">8:30 - 10:00</h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="schedule-row row">
-                                    <div class="col-xs-6">
-                                        <h5 class="regular white">Early Exercise</h5>
-                                    </div>
-                                    <div class="col-xs-6 text-right">
-                                        <h5 class="white">8:30 - 10:00</h5>
-                                    </div>
-                                </div>
-                                <div class="schedule-row row">
-                                    <div class="col-xs-6">
-                                        <h5 class="regular white">Muscle Building</h5>
-                                    </div>
-                                    <div class="col-xs-6 text-right">
-                                        <h5 class="white">8:30 - 10:00</h5>
-                                    </div>
-                                </div>
-                                <div class="schedule-row row">
-                                    <div class="col-xs-6">
-                                        <h5 class="regular white">Cardio</h5>
-                                    </div>
-                                    <div class="col-xs-6 text-right">
-                                        <h5 class="white">8:30 - 10:00</h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="schedule-row row">
-                                    <div class="col-xs-6">
-                                        <h5 class="regular white">Early Exercise</h5>
-                                    </div>
-                                    <div class="col-xs-6 text-right">
-                                        <h5 class="white">8:30 - 10:00</h5>
-                                    </div>
-                                </div>
-                                <div class="schedule-row row">
-                                    <div class="col-xs-6">
-                                        <h5 class="regular white">Muscle Building</h5>
-                                    </div>
-                                    <div class="col-xs-6 text-right">
-                                        <h5 class="white">8:30 - 10:00</h5>
-                                    </div>
-                                </div>
-                                <div class="schedule-row row">
-                                    <div class="col-xs-6">
-                                        <h5 class="regular white">Cardio</h5>
-                                    </div>
-                                    <div class="col-xs-6 text-right">
-                                        <h5 class="white">8:30 - 10:00</h5>
-                                    </div>
+                @{
+                    var products = Model.Content.Products.Fieldsets.Select(x => new
+                    {
+                        Name = x.GetValue("name"),
+                        Desc = x.GetValue("description"),
+                        Image = x.GetValue("image")
+                    });
+                    foreach (var item in products)
+                    {
+                        var imageUrl = Umbraco.TypedMedia(item.Image).Url;
+                        <div class="col-md-4">
+                            <div class="intro-table intro-table-hover" style="background-image: url(@imageUrl);">
+                                <h5 class="white heading hide-hover">@item.Name</h5>
+                                <div class="bottom">
+                                    <h4 class="white heading small-heading no-margin regular">@item.Desc</h4>
+                                    <a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-white-fill expand">Заказать</a>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="intro-table intro-table-hover">
-                        <h5 class="white heading hide-hover">Premium Membership</h5>
-                        <div class="bottom">
-                            <h4 class="white heading small-heading no-margin regular">Register Today</h4>
-                            <h4 class="white heading small-pt">20% Discount</h4>
-                            <a href="#" class="btn btn-white-fill expand">Register</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="intro-table intro-table-third">
-                        <h5 class="white heading">Happy Clients</h5>
-                        <div class="owl-testimonials bottom">
-                            <div class="item">
-                                <h4 class="white heading content">I couldn't be more happy with the results!</h4>
-                                <h5 class="white heading light author">Adam Jordan</h5>
-                            </div>
-                            <div class="item">
-                                <h4 class="white heading content">I can't believe how much better I feel!</h4>
-                                <h5 class="white heading light author">Greg Pardon</h5>
-                            </div>
-                            <div class="item">
-                                <h4 class="white heading content">Incredible transformation and I feel so healthy!</h4>
-                                <h5 class="white heading light author">Christina Goldman</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    }
+                }
             </div>
         </div>
     </section>
-    <section id="pricing" class="section">
+    <section id="slider" class="section section-padded" style="background-color:#2b334d">
         <div class="container">
-            <div class="row title text-center">
-                <h2 class="margin-top white">Pricing</h2>
-                <h4 class="light white">Choose your favorite pricing plan and sign up today!</h4>
+            <div class="row text-center title">
+                <h2 class="white">@Model.Content.PriceTitle</h2>
+                <h4 class="light muted white">@Model.Content.PriceSubTitle</h4>
             </div>
-            <div class="row no-margin">
-                <div class="col-md-7 no-padding col-md-offset-5 pricings text-center">
-                    <div class="pricing">
-                        <div class="box-main active" data-img="img/pricing1.jpg">
-                            <h4 class="white">Yoga Pilates</h4>
-                            <h4 class="white regular light">$850.00 <span class="small-font">/ year</span></h4>
-                            <a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-white-fill">Sign Up Now</a>
-                            <i class="info-icon icon_question"></i>
-                        </div>
-                        <div class="box-second active">
-                            <ul class="white-list text-left">
-                                <li>One Personal Trainer</li>
-                                <li>Big gym space for training</li>
-                                <li>Free tools &amp; props</li>
-                                <li>Free locker</li>
-                                <li>Free before / after shower</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="pricing">
-                        <div class="box-main" data-img="img/pricing2.jpg">
-                            <h4 class="white">Cardio Training</h4>
-                            <h4 class="white regular light">$100.00 <span class="small-font">/ year</span></h4>
-                            <a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-white-fill">Sign Up Now</a>
-                            <i class="info-icon icon_question"></i>
-                        </div>
-                        <div class="box-second">
-                            <ul class="white-list text-left">
-                                <li>One Personal Trainer</li>
-                                <li>Big gym space for training</li>
-                                <li>Free tools &amp; props</li>
-                                <li>Free locker</li>
-                                <li>Free before / after shower</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+            <div class="row">
+                <ul class="bxslider">
+                    @{
+                        var images = Model.Content.Images.Split(',').Where(x => !string.IsNullOrEmpty(x));
+                        foreach (var item in images)
+                        {
+                            var image = Umbraco.TypedMedia(item);
+                            <li><img src="@image.Url" alt="@image.Name" title="@image.Name" width="100%" /></li>
+                        }
+                    }
+                </ul>
             </div>
         </div>
     </section>
@@ -286,9 +161,16 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-6 text-center-mobile">
+                    @{
+                        var imageMap = Umbraco.TypedMedia(Model.Content.MapImage);
+                    }
+                    <img src="@imageMap.Url" alt="@imageMap.Name" width="100%" height="100%" />
                 </div>
                 <div class="col-sm-6 text-center-mobile">
-                    <h3 class="white">Время работы <span class="@(DateTime.Now.Hour > 9 && DateTime.Now.Hour < 18 ? "open-blink" : "close-blink")"></span></h3>
+                    <div class="row text-center title">
+                        <h3 class="white">Время работы <span class="@(DateTime.Now.Hour > 9 && DateTime.Now.Hour < 18 ? "open-blink" : "close-blink")"></span></h3>
+                    </div>
+
                     <div class="row opening-hours">
                         <div class="col-sm-6 text-center-mobile">
                             <h5 class="light-white light">Понедельник - Пятница</h5>
@@ -315,7 +197,7 @@
             <a href="@Model.Content.LinkForVK" target="_blank"><img src="img/vk.svg" align="left" alt="Люки невидимки вконтакте"></a>
         </div>
         <div class="contacts-phone">
-            <a href="tel:@Model.Content.FooterPhone1.Replace(" ", "").Replace("(","").Replace(")","").Replace("+","")"><text class="white" style="margin-right: 30px;">@Model.Content.FooterPhone1</text></a>
+            <a id="phone1-id" href="tel:@Model.Content.FooterPhone1.Replace(" ", "").Replace("(","").Replace(")","").Replace("+","")"><text class="white" style="margin-right: 30px;">@Model.Content.FooterPhone1</text></a>
             <a href="tel:@Model.Content.FooterPhone2.Replace(" ", "").Replace("(","").Replace(")","").Replace("+","")"><text class="white">@Model.Content.FooterPhone2</text></a>
         </div>
 
@@ -327,5 +209,10 @@
     </div>
     <!-- Scripts -->
     @Scripts.Render("~/bundles/scripts.js")
+    <script>
+        $(document).ready(function () {
+            $('.bxslider').bxSlider();
+        });
+    </script>
 </body>
 </html>

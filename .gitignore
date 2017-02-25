@@ -3,6 +3,7 @@
 *.userosscache
 *.sln.docstates
 
+packages/
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
@@ -12,10 +13,14 @@ x86/
 bld/
 [Bb]in/
 [Oo]bj/
-[Ll]og/
-
+[Ll]ogs/
+*/cache/
+*/Logs/
+*/NuGetBackup/
+*/packages/
+*/TEMP/
 .vs/
-
+umbraco.config
 # Web workbench (sass)
 .sass-cache/
 
